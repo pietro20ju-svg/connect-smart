@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Smart | Conserto de celular em Tietê</title>
+<meta name="description" content="Connect Smart em Tietê/SP: conserto de celulares, aparelhos novos e seminovos e acessórios. Nota 5,0 no Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --black:#000;
+  --white:#fff;
+  --grey:#8c8c8c;
+  --line-d:#2b2b2b;
+  --line-l:#d6d6d6;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,sans-serif;
+  --pad:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--black);color:var(--white);line-height:1.6;font-size:1.0625rem;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+.on-white :focus-visible{outline-color:var(--black)}
+.wrap{padding-inline:var(--pad);max-width:1360px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.035em;line-height:1.02}
+
+/* Barra de progresso de rolagem */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--white);transform-origin:left;transform:scaleX(0);z-index:100}
+
+/* Divisão de palavras (títulos sobem como em uma máscara) */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em 0 .16em;margin:-.08em 0 -.16em}
+.w>span{display:inline-block;transform:translateY(118%);transition:transform 1s var(--ease);transition-delay:calc(var(--i)*.08s)}
+.in .w>span{transform:none}
+
+/* Revelação ao rolar */
+.js .rv{opacity:0;transform:translateY(40px);transition:opacity .8s var(--d,0s) ease,transform .9s var(--d,0s) var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* Botões */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;padding:16px 30px;border-radius:8px;font-weight:600;font-size:1rem;border:2px solid var(--white);background:var(--white);color:var(--black);transition:background .2s,color .2s,transform .2s ease-out}
+.btn::after{content:"";position:absolute;top:0;left:-90%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(140,140,140,.45),transparent);transform:skewX(-20deg);transition:left .7s}
+.btn:hover{background:var(--black);color:var(--white)}
+.btn:hover::after{left:150%}
+.btn-sm{padding:10px 20px;font-size:.92rem}
+.link{border-bottom:2px solid currentColor;padding-bottom:2px;font-weight:600;transition:letter-spacing .25s}
+.link:hover{letter-spacing:.03em}
+
+/* Topo */
+header{position:sticky;top:0;z-index:40;background:var(--black);border-bottom:1px solid var(--line-d)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:76px;transition:height .3s}
+header.scrolled .bar{height:60px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.brand svg{width:30px;height:40px;transition:transform .5s var(--ease)}
+.brand:hover svg{transform:rotate(-8deg) scale(1.1)}
+.bar nav{display:flex;gap:34px;font-size:.96rem;color:#cfcfcf}
+.bar nav a{position:relative;padding:4px 0;transition:color .2s}
+.bar nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--white);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.bar nav a:hover{color:var(--white)}
+.bar nav a:hover::after{transform:scaleX(1);transform-origin:left}
+@media(max-width:820px){.bar nav{display:none}}
+
+/* Hero */
+#inicio{position:relative;padding:72px 0 96px;overflow:hidden}
+#inicio::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,72%) var(--my,30%),rgba(255,255,255,.10),transparent 65%);pointer-events:none}
+#inicio::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.28) 1px,transparent 1.6px);background-size:34px 34px;-webkit-mask-image:radial-gradient(460px circle at var(--mx,72%) var(--my,30%),#000,transparent 70%);mask-image:radial-gradient(460px circle at var(--mx,72%) var(--my,30%),#000,transparent 70%);pointer-events:none}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.rot{display:flex;gap:.45em;align-items:center;font-family:var(--display);font-weight:600;font-size:clamp(1.25rem,2.3vw,1.75rem);color:#d4d4d4;margin-bottom:22px;animation:rise .9s both}
+.rot-win{display:inline-block;height:1.3em;overflow:hidden;border-bottom:3px solid var(--white);color:var(--white)}
+.rot-list{display:flex;flex-direction:column;animation:rot 9s var(--ease) infinite}
+.rot-list span{height:1.3em;line-height:1.3;white-space:nowrap}
+@keyframes rot{
+  0%,20%{transform:translateY(0)}
+  25%,45%{transform:translateY(-1.3em)}
+  50%,70%{transform:translateY(-2.6em)}
+  75%,95%{transform:translateY(-3.9em)}
+  100%{transform:translateY(-5.2em)}
+}
+.hero h1{font-size:clamp(3rem,8.2vw,7.4rem);font-weight:800;margin-bottom:28px}
+.hero p.sub{font-size:1.25rem;color:#d4d4d4;max-width:30em;margin-bottom:36px;animation:rise .9s .5s both}
+.hero .actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-bottom:44px;animation:rise .9s .65s both}
+.proof{display:flex;align-items:center;gap:14px;color:#cfcfcf;font-size:.98rem;animation:rise .9s .8s both}
+.proof b{color:var(--white);font-family:var(--display);font-size:1.8rem;letter-spacing:-.03em}
+.stars{letter-spacing:3px;color:var(--white)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+.phone{width:100%;max-width:520px;margin-left:auto;transition:transform .25s ease-out;will-change:transform}
+.phone svg{width:100%;height:auto;overflow:visible;animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.base{fill:none;stroke:#7a7a7a;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.8s .6s ease-out forwards}
+.t2{animation-delay:.9s}.t3{animation-delay:1.2s}.t4{animation-delay:1.5s}
+.pulse{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-dasharray:.1 2;opacity:0;animation:fadein .01s var(--pd) forwards,travel 3.2s var(--pd) linear infinite}
+@keyframes fadein{to{opacity:1}}
+@keyframes travel{0%{stroke-dashoffset:.1}70%,100%{stroke-dashoffset:-1.05}}
+.node{fill:var(--white);opacity:0;animation:fadein .4s ease-out forwards}
+.n1{animation-delay:2.4s}.n2{animation-delay:2.6s}.n3{animation-delay:2.8s}.n4{animation-delay:3s}
+.ring{fill:none;stroke:#fff;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center;animation:ripple 3.2s var(--pd) infinite}
+@keyframes ripple{0%,65%{transform:scale(1);opacity:0}66%{opacity:.8}100%{transform:scale(3.4);opacity:0}}
+.glow{transform-box:fill-box;transform-origin:center;animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(.85);opacity:.5}50%{transform:scale(1.15);opacity:1}}
+.scan{animation:scan 3.8s linear infinite}
+@keyframes scan{from{transform:translateY(0)}to{transform:translateY(500px)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.phone{max-width:340px;margin:20px auto 0}}
+
+/* Faixa que corre */
+.marquee{overflow:hidden;border-block:1px solid var(--line-d);padding:26px 0;background:var(--black)}
+.track{display:flex;width:max-content;animation:scroll 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.group{display:flex;align-items:center;gap:44px;padding-right:44px;flex:none;font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4.2vw,3.2rem);letter-spacing:-.03em;white-space:nowrap}
+.group i{width:14px;height:14px;border-radius:50%;background:var(--white);flex:none}
+.group span:nth-of-type(even){color:transparent;-webkit-text-stroke:1.5px var(--white)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Faixas claras e escuras */
+.on-white{background:var(--white);color:var(--black)}
+.sec{padding:112px 0}
+@media(max-width:700px){.sec{padding:72px 0}}
+.sec h2{font-size:clamp(2.4rem,5.6vw,4.6rem);font-weight:800;max-width:14em}
+.sec .intro{margin-top:20px;max-width:34em;font-size:1.15rem;color:var(--grey)}
+.on-white .intro{color:#555}
+
+/* Serviços: lista ligada por trilha */
+.rows{list-style:none;margin-top:64px;position:relative}
+.rows::before,.rows::after{content:"";position:absolute;left:11px;top:34px;bottom:34px;width:3px}
+.rows::before{background:#d6d6d6}
+.rows::after{background:var(--black);transform-origin:top;transform:scaleY(var(--fill,0))}
+.row{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:baseline;padding:30px 20px;margin-inline:-20px;border-top:1px solid var(--line-l);position:relative;cursor:default;background-image:linear-gradient(var(--black),var(--black));background-repeat:no-repeat;background-size:0% 100%;transition:background-size .5s cubic-bezier(.7,0,.2,1),color .3s}
+.js .row.rv{transform:translateX(-36px);transition:opacity .8s ease,transform .9s var(--ease),background-size .5s cubic-bezier(.7,0,.2,1),color .3s}
+.js .row.rv.in{transform:none}
+.row:first-child{border-top:0}
+.row::before{content:"";position:absolute;left:20px;top:42px;width:25px;height:25px;border-radius:50%;background:#fff;border:5px solid #fff;box-shadow:0 0 0 3px #cfcfcf;transition:background .4s,box-shadow .4s,transform .3s,border-color .3s;z-index:1}
+.row.in::before{background:var(--black);box-shadow:0 0 0 3px var(--black)}
+.row:hover{background-size:100% 100%;color:var(--white)}
+.row:hover::before{background:var(--white);border-color:var(--black);box-shadow:0 0 0 3px var(--white);transform:scale(1.2)}
+.row h3{grid-column:2;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:700;transition:transform .4s var(--ease)}
+.row:hover h3{transform:translateX(14px)}
+.row p{grid-column:3;color:#4a4a4a;max-width:28em;transition:color .3s}
+.row:hover p{color:#d0d0d0}
+@media(max-width:700px){.row{grid-template-columns:40px 1fr}.row p{grid-column:2}}
+
+/* Produtos */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border-top:3px solid var(--white)}
+.path{padding:40px 36px;display:flex;flex-direction:column;gap:18px}
+.js .path.rv{transition:opacity .8s var(--d,0s) ease,transform .9s var(--d,0s) var(--ease),background .35s,color .35s}
+.path+.path{border-left:1px solid var(--line-d)}
+.path:hover{background:var(--white);color:var(--black)}
+.path h3{font-size:clamp(2.2rem,4.4vw,3.8rem);font-weight:800;transition:transform .4s var(--ease)}
+.path:hover h3{transform:translateX(10px)}
+.path p{color:#c9c9c9;max-width:22em;transition:color .35s}
+.path ul{list-style:none;color:var(--grey);font-size:.98rem;transition:color .35s}
+.path li{padding:5px 0}
+.path:hover p{color:#444}
+.path:hover ul{color:#555}
+.path .link{align-self:flex-start;margin-top:auto}
+@media(max-width:900px){
+  .paths{grid-template-columns:1fr}
+  .path+.path{border-left:0;border-top:1px solid var(--line-d)}
+}
+
+/* Avaliações */
+.rev{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:start}
+.score{font-family:var(--display);font-weight:800;font-size:clamp(7rem,18vw,15rem);line-height:.82;letter-spacing:-.07em;font-variant-numeric:tabular-nums}
+.score-meta{margin-top:20px}
+.score-meta .stars{font-size:1.7rem;color:var(--black);display:flex;gap:6px;letter-spacing:0}
+.score-meta .stars span{display:inline-block;opacity:.12;transform:scale(.4) rotate(-40deg);transition:opacity .5s,transform .6s var(--ease);transition-delay:calc(var(--s)*.18s + .5s)}
+.score-meta.in .stars span{opacity:1;transform:none}
+.score-meta p{color:#555}
+.quotes{display:grid;gap:44px}
+.quote{position:relative;padding-left:34px}
+.quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--black);transform-origin:top;transform:scaleY(0);transition:transform 1s .25s var(--ease)}
+.quote.in::before{transform:scaleY(1)}
+.quote blockquote{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.15;letter-spacing:-.025em;margin-bottom:16px}
+.quote cite{font-style:normal;color:#555;font-size:.98rem}
+@media(max-width:900px){.rev{grid-template-columns:1fr;gap:48px}}
+
+/* Contato */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:stretch;margin-top:56px}
+dl{border-top:1px solid var(--line-d)}
+.item{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line-d)}
+.item dt{color:var(--grey);font-size:.95rem}
+.item dd{font-size:1.15rem}
+.item dd small{display:block;color:var(--grey);font-size:.9rem;margin-top:2px}
+.item a{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0% 2px;transition:background-size .35s var(--ease)}
+.item a:hover{background-size:100% 2px}
+.map{min-height:440px;border:1px solid var(--line-d);border-radius:8px;overflow:hidden}
+.map iframe{width:100%;height:100%;min-height:440px;border:0;filter:grayscale(1) invert(.92) contrast(.9);transition:filter .5s}
+.map:hover iframe{filter:grayscale(.2) invert(0) contrast(1)}
+.contact-cta{margin-top:32px}
+@media(max-width:900px){.contact{grid-template-columns:1fr;gap:36px}.item{grid-template-columns:110px 1fr}}
+
+footer{border-top:1px solid var(--line-d);padding:36px 0;color:var(--grey);font-size:.92rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.foot .brand{color:var(--white);font-size:1.05rem}
+.foot .brand svg{width:22px;height:30px}
+
+.float{position:fixed;right:20px;bottom:20px;z-index:50;width:60px;height:60px;border-radius:50%;background:var(--white);color:var(--black);display:grid;place-items:center;box-shadow:0 0 0 3px var(--black),0 0 0 5px var(--white);transition:transform .2s}
+.float::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--white);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.float:hover{transform:scale(1.1) rotate(-8deg)}
+.float svg{width:28px;height:28px;fill:none;stroke:var(--black);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .base{stroke-dashoffset:0}.node{opacity:1}
+  .rv,.js .rv{opacity:1;transform:none}
+  .w>span{transform:none}
+  .rot,.hero p.sub,.hero .actions,.proof{opacity:1}
+  .score-meta .stars span{opacity:1;transform:none}
+  .quote::before{transform:scaleY(1)}
+  .rows::after{transform:scaleY(1)}
+  .row::before{background:var(--black);box-shadow:0 0 0 3px var(--black)}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 297 395">
+    <g fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M238 118V88Q238 58 208 58H92Q62 58 62 88V138Q62 165 90 165H132"/>
+      <path d="M62 268V282Q62 320 100 320H208Q238 320 238 290V250Q238 220 208 220H178"/>
+    </g>
+    <circle cx="132" cy="165" r="25" fill="#fff"/>
+    <circle cx="178" cy="220" r="25" fill="#fff"/>
+  </symbol>
+</svg>
+
+<header id="topo">
+  <div class="wrap bar">
+    <a href="#inicio" class="brand" aria-label="Connect Smart, início">
+      <svg aria-hidden="true"><use href="#logo"/></svg>Connect Smart
+    </a>
+    <nav aria-label="Principal">
+      <a href="#servicos">Consertos</a>
+      <a href="#produtos">Aparelhos</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Como chegar</a>
+    </nav>
+    <a class="btn btn-sm" href="https://wa.me/5515996922042" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
+<main>
+<section id="inicio">
+  <div class="wrap hero">
+    <div>
+      <p class="rot" aria-hidden="true">Conserto de
+        <span class="rot-win"><span class="rot-list"><span>tela</span><span>bateria</span><span>câmera</span><span>conector de carga</span><span>tela</span></span></span>
+      </p>
+      <h1 data-split>Seu celular merece conserto de verdade.</h1>
+      <p class="sub">Oficina em Tietê que também vende aparelhos novos e seminovos e acessórios. Conte o problema e receba o orçamento antes de qualquer serviço.</p>
+      <div class="actions">
+        <a class="btn" href="https://wa.me/5515996922042?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20de%20conserto." target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
+        <a class="link" href="#contato">Ver como chegar</a>
+      </div>
+      <div class="proof">
+        <b data-count="5.0">5,0</b>
+        <span><span class="stars" aria-hidden="true">★★★★★</span><br>8 avaliações no Google</span>
+      </div>
+    </div>
+
+    <div class="phone" aria-hidden="true">
+      <svg viewBox="0 0 520 560">
+        <defs>
+          <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="scanG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".28"/></linearGradient>
+          <clipPath id="scr"><rect x="148" y="30" width="224" height="480" rx="38"/></clipPath>
+        </defs>
+        <rect x="140" y="20" width="240" height="500" rx="44" fill="none" stroke="#fff" stroke-width="4"/>
+        <rect x="222" y="44" width="76" height="9" rx="4.5" fill="#fff"/>
+        <circle class="glow" cx="260" cy="245" r="120" fill="url(#glow)"/>
+        <use href="#logo" x="188" y="150" width="144" height="191"/>
+        <g clip-path="url(#scr)">
+          <g class="scan">
+            <rect x="148" y="-10" width="224" height="60" fill="url(#scanG)"/>
+            <rect x="148" y="48" width="224" height="2" fill="#fff" opacity=".7"/>
+          </g>
+        </g>
+
+        <path class="base" pathLength="1" d="M140 130H70V70H24"/>
+        <path class="base t2" pathLength="1" d="M380 210H450V290H496"/>
+        <path class="base t3" pathLength="1" d="M140 380H90V450H34"/>
+        <path class="base t4" pathLength="1" d="M380 440H430V500H488"/>
+
+        <path class="pulse" pathLength="1" style="--pd:3s" d="M140 130H70V70H24"/>
+        <path class="pulse" pathLength="1" style="--pd:3.4s" d="M380 210H450V290H496"/>
+        <path class="pulse" pathLength="1" style="--pd:3.8s" d="M140 380H90V450H34"/>
+        <path class="pulse" pathLength="1" style="--pd:4.2s" d="M380 440H430V500H488"/>
+
+        <circle class="node n1" cx="24" cy="70" r="10"/>
+        <circle class="node n2" cx="496" cy="290" r="10"/>
+        <circle class="node n3" cx="34" cy="450" r="10"/>
+        <circle class="node n4" cx="488" cy="500" r="10"/>
+        <circle class="ring" style="--pd:3s" cx="24" cy="70" r="10"/>
+        <circle class="ring" style="--pd:3.4s" cx="496" cy="290" r="10"/>
+        <circle class="ring" style="--pd:3.8s" cx="34" cy="450" r="10"/>
+        <circle class="ring" style="--pd:4.2s" cx="488" cy="500" r="10"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <div class="group">
+      <span>Troca de tela</span><i></i><span>Troca de bateria</span><i></i><span>Celulares novos</span><i></i><span>Seminovos</span><i></i><span>Acessórios</span><i></i><span>Conector de carga</span><i></i><span>Câmeras</span><i></i><span>Áudio e microfone</span><i></i>
+    </div>
+  </div>
+</div>
+
+<section id="servicos" class="sec on-white">
+  <div class="wrap">
+    <h2 data-split>O que a gente conserta</h2>
+    <p class="intro rv">Cada defeito tem diagnóstico antes do serviço. Você sabe o que o aparelho tem e quanto custa o reparo.</p>
+    <ul class="rows">
+      <li class="row rv"><h3>Troca de tela</h3><p>Vidro trincado, imagem com manchas ou toque que não responde.</p></li>
+      <li class="row rv"><h3>Troca de bateria</h3><p>Celular que descarrega rápido, esquenta ou desliga sozinho.</p></li>
+      <li class="row rv"><h3>Conector de carga</h3><p>Cabo que não encaixa direito ou aparelho que não carrega.</p></li>
+      <li class="row rv"><h3>Áudio e microfone</h3><p>Som baixo, chiado ou pessoa que não consegue te ouvir na ligação.</p></li>
+      <li class="row rv"><h3>Câmeras</h3><p>Foto embaçada, lente trincada ou câmera que não abre.</p></li>
+      <li class="row rv"><h3>Software</h3><p>Travamentos, lentidão e falhas que aparecem depois de uma atualização.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="produtos" class="sec">
+  <div class="wrap">
+    <h2 data-split>Quando consertar não compensa, troque.</h2>
+    <p class="intro rv">Aparelhos e acessórios na própria loja. Pergunte pelos modelos disponíveis no WhatsApp.</p>
+    <div class="paths">
+      <article class="path rv">
+        <h3>Novos</h3>
+        <p>Celulares lacrados das principais marcas, com nota fiscal e garantia.</p>
+        <ul><li>Ajuda para configurar</li><li>Diversas faixas de preço</li></ul>
+        <a class="link" href="https://wa.me/5515996922042?text=Ol%C3%A1!%20Quero%20saber%20sobre%20celulares%20novos." target="_blank" rel="noopener">Consultar modelos novos</a>
+      </article>
+      <article class="path rv">
+        <h3>Seminovos</h3>
+        <p>Aparelhos revisados, testados e com a condição explicada antes da compra.</p>
+        <ul><li>Preço mais baixo</li><li>Boa opção para presentear</li></ul>
+        <a class="link" href="https://wa.me/5515996922042?text=Ol%C3%A1!%20Quero%20saber%20sobre%20celulares%20seminovos." target="_blank" rel="noopener">Consultar seminovos</a>
+      </article>
+      <article class="path rv">
+        <h3>Acessórios</h3>
+        <p>Capas, películas, carregadores, cabos e fones para o dia a dia.</p>
+        <ul><li>Instalação de película</li><li>Itens para vários modelos</li></ul>
+        <a class="link" href="https://wa.me/5515996922042?text=Ol%C3%A1!%20Quero%20saber%20sobre%20acess%C3%B3rios." target="_blank" rel="noopener">Consultar acessórios</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes" class="sec on-white">
+  <div class="wrap rev">
+    <div>
+      <div class="score" data-count="5.0" aria-label="Nota 5,0">5,0</div>
+      <div class="score-meta rv">
+        <div class="stars" aria-hidden="true"><span style="--s:0">★</span><span style="--s:1">★</span><span style="--s:2">★</span><span style="--s:3">★</span><span style="--s:4">★</span></div>
+        <p>Nota média em 8 avaliações no Google</p>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="quote rv">
+        <blockquote>“Atendimento nota 10, serviço de primeira. Recomendo muito.”</blockquote>
+        <figcaption><cite>Carolina Landucci, há 2 meses</cite></figcaption>
+      </figure>
+      <figure class="quote rv">
+        <blockquote>“Excelente atendimento, pessoal lá é fera demais!”</blockquote>
+        <figcaption><cite>Adnilson Godoy, há 3 meses</cite></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="sec">
+  <div class="wrap">
+    <h2 data-split>Passe na loja ou chame no WhatsApp</h2>
+    <div class="contact">
+      <div>
+        <dl>
+          <div class="item rv"><dt>Endereço</dt><dd>R. Lara Campos, 60<br>Tietê, SP, 18530-000<small>Plus Code: W72M+6P Tietê</small></dd></div>
+          <div class="item rv"><dt>Horário</dt><dd>Das 09:00 às 18:30<small>Confirme os dias de funcionamento pelo WhatsApp.</small></dd></div>
+          <div class="item rv"><dt>WhatsApp</dt><dd><a href="https://wa.me/5515996922042" target="_blank" rel="noopener">(15) 99692-2042</a></dd></div>
+          <div class="item rv"><dt>Instagram</dt><dd><a href="https://instagram.com" target="_blank" rel="noopener">instagram.com</a></dd></div>
+        </dl>
+        <div class="contact-cta rv">
+          <a class="btn" href="https://wa.me/5515996922042?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="map rv">
+        <iframe title="Mapa da Connect Smart em Tietê" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=R.%20Lara%20Campos%2C%2060%2C%20Tiet%C3%AA%20-%20SP&amp;output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#inicio" class="brand"><svg aria-hidden="true"><use href="#logo"/></svg>Connect Smart</a>
+    <span>R. Lara Campos, 60, Tietê/SP</span>
+    <span>© <span id="ano"></span> Connect Smart</span>
+  </div>
+</footer>
+
+<a class="float" href="https://wa.me/5515996922042" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></svg>
+</a>
+
+<script>
+(function(){
+  document.getElementById('ano').textContent=new Date().getFullYear();
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hover=matchMedia('(hover:hover)').matches;
+
+  /* Títulos em palavras */
+  document.querySelectorAll('[data-split]').forEach(function(el){
+    var txt=el.textContent.trim();
+    el.setAttribute('aria-label',txt);
+    el.innerHTML=txt.split(/\s+/).map(function(w,i){
+      return '<span class="w" aria-hidden="true"><span style="--i:'+i+'">'+w+'</span></span>';
+    }).join(' ');
+  });
+
+  /* Faixa que corre: duplica o conteúdo para o loop ficar contínuo */
+  document.querySelectorAll('.track').forEach(function(t){
+    var g=t.firstElementChild.cloneNode(true);
+    t.appendChild(g);
+  });
+
+  /* Atrasos escalonados */
+  [['.paths .path',.14],['.quotes .quote',.18],['.contact .item',.09]].forEach(function(p){
+    document.querySelectorAll(p[0]).forEach(function(el,i){el.style.setProperty('--d',(i*p[1])+'s')});
+  });
+
+  /* Contador */
+  function count(el){
+    var end=parseFloat(el.dataset.count),t0=performance.now(),dur=1500;
+    (function f(t){
+      var p=Math.min((t-t0)/dur,1),v=end*(1-Math.pow(1-p,3));
+      el.textContent=v.toFixed(1).replace('.',',');
+      if(p<1)requestAnimationFrame(f);
+    })(t0);
+  }
+
+  /* Revelação ao rolar */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;
+      el.classList.add('in');
+      if(el.dataset.count&&!reduce)count(el);
+      io.unobserve(el);
+    });
+  },{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv,[data-split],[data-count]').forEach(function(el){io.observe(el)});
+
+  /* Progresso, cabeçalho e trilha dos serviços */
+  var prog=document.getElementById('progress'),
+      rows=document.querySelector('.rows'),
+      hdr=document.getElementById('topo');
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    prog.style.transform='scaleX('+(max>0?h.scrollTop/max:0)+')';
+    hdr.classList.toggle('scrolled',h.scrollTop>40);
+    var r=rows.getBoundingClientRect();
+    var f=Math.min(Math.max((innerHeight*.7-r.top)/r.height,0),1);
+    rows.style.setProperty('--fill',f);
+  }
+  var tick=false;
+  addEventListener('scroll',function(){
+    if(tick)return;tick=true;
+    requestAnimationFrame(function(){onScroll();tick=false});
+  },{passive:true});
+  onScroll();
+
+  if(reduce||!hover)return;
+
+  /* Holofote e inclinação do celular */
+  var hero=document.getElementById('inicio'),phone=document.querySelector('.phone');
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    hero.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    hero.style.setProperty('--my',(e.clientY-r.top)+'px');
+    var pr=phone.getBoundingClientRect();
+    var dx=(e.clientX-(pr.left+pr.width/2))/r.width;
+    var dy=(e.clientY-(pr.top+pr.height/2))/r.height;
+    phone.style.transform='perspective(900px) rotateY('+(dx*18)+'deg) rotateX('+(-dy*14)+'deg)';
+  });
+  hero.addEventListener('mouseleave',function(){phone.style.transform=''});
+
+  /* Botões magnéticos */
+  document.querySelectorAll('.btn').forEach(function(b){
+    b.addEventListener('mousemove',function(e){
+      var r=b.getBoundingClientRect();
+      b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)';
+    });
+    b.addEventListener('mouseleave',function(){b.style.transform=''});
+  });
+})();
+</script>
+</body>
+</html>
